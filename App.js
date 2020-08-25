@@ -1,21 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
+import { DefaultTheme, Provider as PaperProvider, Button } from 'react-native-paper';
 import { StyleSheet, Text, View } from 'react-native';
+
+import Header from './components/Header';
+import ScreenContainerWithFooterNav from './components/ScreenContainerWithFooterNav';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <PaperProvider theme={theme}>
+      <Header/>
+      <ScreenContainerWithFooterNav/>
+    </PaperProvider>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const theme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: 'green',
+    //accent: 'yellow'
+  }
+};
