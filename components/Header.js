@@ -10,7 +10,7 @@ const Header = () => {
 
     return (
         <Appbar.Header>
-            <Appbar.BackAction onPress={_goBack} />
+            {/* <Appbar.BackAction onPress={_goBack} /> */}
             <Appbar.Content title="Scratch Golf" subtitle="Handicap Tracker" />
             {/* <Appbar.Action icon="magnify" onPress={_handleSearch} /> */}
             {/* <Appbar.Action icon="dots-vertical" onPress={_handleMore} /> */}
