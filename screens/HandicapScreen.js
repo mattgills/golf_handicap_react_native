@@ -1,32 +1,60 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import { Button } from 'react-native-paper';
+import { View, ScrollView, StyleSheet } from 'react-native';
+import { IconButton, Colors } from 'react-native-paper';
 
-import Card from '../components/Card';
 import GolfRoundCard from '../components/GolfRoundCard';
+import golfRounds from '../rounds';
 
 const HandicapScreen = props => {
+    const golfRoundCardArr = golfRounds.map(round => {
+        return (
+            <GolfRoundCard
+                key={round.id}
+                style={styles.card}
+                name={round.name}
+                date={round.date}
+                tees={round.tees}
+                score={round.score}
+            />
+        );
+    });
+
     return (
-        <View style={styles.container}>
-            <GolfRoundCard style={styles.card}/>
-            {/* <View style={styles.buttonContainer}>
-                <Button icon="camera" mode="contained" onPress={() => console.log('Pressed')}>
-                    Press me
-                </Button>
-            </View> */}
+        <View style={styles.screen}>
+            <View style={{height: '90%'}}>
+                <ScrollView contentContainerStyle={styles.cardContainer}>
+                    {golfRoundCardArr}
+                </ScrollView>
+            </View>
+            
+            <View style={styles.buttonContainer}>
+                <IconButton
+                    color={Colors.green600}
+                    icon="plus"
+                    size={40}
+                    onPress={() => console.log('Pressed')}
+                />
+            </View>
         </View>
         
     );
 };
 
 const styles = StyleSheet.create({
-    container: {
-        alignItems: 'center',
-        justifyContent: 'space-evenly',
-        marginVertical: 20
+    screen: {
+        flex: 1
+    },
+    cardContainer: {
+        alignItems: 'center'
     },
     card: {
+        marginVertical: 10,
         width: '80%'
+    },
+    buttonContainer: {
+        alignSelf: 'center',
+        position: 'absolute',
+        bottom: 0
     }
 });
 

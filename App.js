@@ -1,5 +1,5 @@
 import React from 'react';
-import { DefaultTheme, Provider as PaperProvider, Button } from 'react-native-paper';
+import { DefaultTheme, Provider as PaperProvider, Colors } from 'react-native-paper';
 import { StyleSheet, Text, View } from 'react-native';
 
 import Header from './components/Header';
@@ -18,7 +18,7 @@ const theme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    primary: 'green',
+    primary: Colors.green600,
     //accent: 'yellow'
   }
 };

@@ -1,44 +1,49 @@
 import * as React from 'react';
-import { View, StyleSheet } from 'react-native';
-import { Title, Subheading, Headline, Divider, Button } from 'react-native-paper';
+import { View, TouchableOpacity, StyleSheet } from 'react-native';
+import { Subheading, Divider } from 'react-native-paper';
 
 import Card from '../components/Card';
 
 const GolfRoundCard = props => (
-    <Card style={{...styles.cardContainer, ...props.style}}>
-        <View style={styles.cardHeader}>
-            <Headline>Golf Course</Headline>
-            <Title>Score: 88</Title>
-        </View>
-        <Divider />
-        <View style={styles.cardBody}>
-            <Subheading>Date</Subheading>
-            <Subheading>White Tees</Subheading>
-        </View>
-        <Divider />
-        <View style={styles.cardActions}>
+    <TouchableOpacity
+        style={{...props.style}}
+        onPress={() => console.log('Edit Modal')}
+    >
+        <Card style={styles.cardContainer}>
+            <View style={styles.cardHeader}>
+                <Subheading>{props.name}</Subheading>
+                <Subheading>{props.date}</Subheading>
+            </View>
+            <Divider />
+            <View style={styles.cardBody}>
+                <Subheading>{props.tees} Tees</Subheading>
+                <Subheading>Score: {props.score}</Subheading>
+            </View>
+            {/* <Divider />
+            <View style={styles.cardActions}>
             <Button
-                icon="pencil-outline"
-                onPress={() => console.log('Launch Edit Modal')}
-                compact="false"
+            icon="pencil-outline"
+            onPress={() => console.log('Launch Edit Modal')}
+            compact="false"
             >
-                Edit
+            Edit
             </Button>
             <Button
-                icon="trash-can-outline"
-                onPress={() => console.log('Launch Delete Confirmation')}
-                compact="true"
-                color="red"
+            icon="trash-can-outline"
+            onPress={() => console.log('Launch Delete Confirmation')}
+            compact="true"
+            color="red"
             >
-                Remove
+            Remove
             </Button>
-        </View>
-    </Card>
+        </View> */}
+        </Card>
+    </TouchableOpacity>
 );
 
 const styles = StyleSheet.create({
     cardContainer: {
-        //marginVertical: 10
+        paddingVertical: 10
     },
     cardHeader: {
         flexDirection: 'row',
@@ -46,7 +51,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between'
     },
     cardBody: {
-        marginVertical: 10,
+        //marginTop:10,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between'
