@@ -1,20 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, ScrollView, StyleSheet } from 'react-native';
-import { IconButton, Colors } from 'react-native-paper';
+import { IconButton, Text, Modal, Portal, Colors } from 'react-native-paper';
 
 import GolfRoundCard from '../components/GolfRoundCard';
 import golfRounds from '../rounds';
 
 const HandicapScreen = props => {
-    const golfRoundCardArr = golfRounds.map(round => {
+    const [rounds, setRounds] = useState(golfRounds);
+    const [selectedRound, setSelectedRound] = useState(null);
+    const [visible, setVisible] = useState(false);
+
+    console.log('re render', visible, selectedRound)
+
+    const selectCourseHandler = (course) => {
+        setSelectedRound(course);
+        setVisible(true);
+    };
+
+    const hideModalHandler = () => {
+        setVisible(false);
+        setSelectedRound(null);
+    };
+
+    const golfRoundCardArr = rounds.map(round => {
         return (
             <GolfRoundCard
                 key={round.id}
                 style={styles.card}
-                name={round.name}
-                date={round.date}
-                tees={round.tees}
-                score={round.score}
+                round={{...round}}
+                onPressHandler={selectCourseHandler}
             />
         );
     });
@@ -26,6 +40,12 @@ const HandicapScreen = props => {
                     {golfRoundCardArr}
                 </ScrollView>
             </View>
+
+            <Portal style={styles.cardContainer}>
+                <Modal visible={visible} onDismiss={hideModalHandler}>
+                    <Text>Example Modal</Text>
+                </Modal>
+            </Portal>
             
             <View style={styles.buttonContainer}>
                 <IconButton

@@ -7,17 +7,17 @@ import Card from '../components/Card';
 const GolfRoundCard = props => (
     <TouchableOpacity
         style={{...props.style}}
-        onPress={() => console.log('Edit Modal')}
+        onPress={() => props.onPressHandler(props.round)}
     >
         <Card style={styles.cardContainer}>
             <View style={styles.cardHeader}>
-                <Subheading>{props.name}</Subheading>
-                <Subheading>{props.date}</Subheading>
+                <Subheading>{props.round.name}</Subheading>
+                <Subheading>{props.round.date}</Subheading>
             </View>
             <Divider />
             <View style={styles.cardBody}>
-                <Subheading>{props.tees} Tees</Subheading>
-                <Subheading>Score: {props.score}</Subheading>
+                <Subheading>{props.round.tees} Tees</Subheading>
+                <Subheading>Score: {props.round.score}</Subheading>
             </View>
             {/* <Divider />
             <View style={styles.cardActions}>
